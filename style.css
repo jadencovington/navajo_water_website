@@ -1,160 +1,500 @@
 :root {
-    --background: rgba(215, 81, 52, 1);
-  }
+  --background: rgba(215, 81, 52, 100);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+.logo {
+  color: #FEFAF3;
+  font-family: serif;
   
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  
-  body {
-      margin: 0;
-      font-family: 'Suez One';
-  }
-  
-  .content {
-    height: 200vh;
-    background-image: url("https://assets.codepen.io/7596121/big+pool.jpeg");
-    background-color: #33;
-    background-blend-mode: multiply;
-    background-size: cover;
-  }
-  
-  .navigation {
-    background: var(--background);
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-  }
-  
-  .nav-toggle {
+}
+
+.content {
+  height: 200vh;
+  background-image: url("https://assets.codepen.io/7596121/Navajo+Child+TEMP.jpg");
+  background-color: #33;
+  background-blend-mode: multiply;
+  background-size: cover;
+
+}
+
+.navigation {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span {
+  color: #D75134;
+  font-size: 1.5em;
+}
+
+/* Hamburger Menu Styles */
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: #FEFAF3;
+  height: 3px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 9px;
+}
+
+.nav-toggle-label span::after {
+  top: 9px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1,0);
+  transition: transform 400ms ease-in-out;
+  transform-origin: top;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: #FEFAF3;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+
+/* media query for desktop*/
+
+
+@media screen and (min-width: 600px) {
+  .nav-toggle-label {
     display: none;
   }
   
-  .nav-toggle-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: 1em;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  .navigation {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
   }
   
-  .nav-toggle-label span {
-    color: #FEFAF3;
-    font-size: 1.5em;
-  }
-  
-  /* Hamburger Menu Styles */
-  
-  .nav-toggle-label span,
-  .nav-toggle-label span::before,
-  .nav-toggle-label span::after {
-    display: block;
-    background: #FEFAF3;
-    height: 3px;
-    width: 2em;
-    border-radius: 2px;
-    position: relative;
-  }
-  
-  .nav-toggle-label span::before,
-  .nav-toggle-label span::after {
-    content: "";
-    position: absolute;
-  }
-  
-  .nav-toggle-label span::before {
-    bottom: 9px;
-  }
-  
-  .nav-toggle-label span::after {
-    top: 9px;
+  .logo {
+    grid-column: 2/3;
   }
   
   nav {
-    position: absolute;
-    text-align: left;
-    top: 100%;
-    left: 0;
-    background: var(--background);
-    width: 100%;
-    transform: scale(1,0);
-    transition: transform 400ms ease-in-out;
-    transform-origin: top;
+    all: unset;
+    grid-column: 3/4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
   
   nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    display: flex;
+    justify-content: flex-end;
   }
   
   nav li {
-    margin-bottom: 1em;
-    margin-left: 1em;
+    margin-left: 3em;
+    margin-bottom: 0;
   }
   
   nav a {
-    color: #FEFAF3;
-    text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    opacity: 0;
-  }
-  
-  nav a:hover {
-    color: #231D12;
-  }
-  
-  .nav-toggle:checked ~ nav {
-    transform: scale(1,1);
-  }
-  
-  .nav-toggle:checked ~ nav a {
     opacity: 1;
-    transition: opacity 250ms ease-in-out 250ms;
+    position: relative;
   }
-  
-  
-  /* media query for desktop*/
-  
-  
-  @media screen and (min-width: 600px) {
-    .nav-toggle-label {
-      display: none;
-    }
-    
-    .navigation {
-      display: grid;
-      grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
-    }
-    
-    .logo {
-      grid-column: 2/3;
-    }
-    
-    nav {
-      all: unset;
-      grid-column: 3/4;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    
-    nav ul {
-      display: flex;
-      justify-content: flex-end;
-    }
-    
-    nav li {
-      margin-left: 3em;
-      margin-bottom: 0;
-    }
-    
-    nav a {
-      opacity: 1;
-      position: relative;
-    }
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://assets.codepen.io/7596121/Hero+TEMP2.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #FEFAF3;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-family: 'Palanquin Dark', sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.hero p {
+  font-family: 'Palanquin Dark', sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.content-section {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.left-half {
+  width: 720px;
+  background-color: #F4BF66;
+  padding: 20px;
+}
+
+.right-half {
+  width: 690px;
+  /* Add any additional styling for the right half here */
+}
+
+.text-section {
+  font-family: 'Fuez One';
+}
+
+.text-section h2 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.text-section p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 767px) {
+  .content-section {
+    flex-direction: column-reverse;
   }
+
+  .left-half,
+  .right-half {
+    width: 100%;
+  }
+
+  .text-section {
+    padding: 20px;
+  }
+
+  .text-section h2 {
+    font-size: 36px;
+  }
+
+  .text-section p {
+    font-size: 12px;
+  }
+
+  .right-half img {
+    width: 675px;
+    height: 322px;
+    object-fit: cover;
+  }
+}
+
+.event-section {
+  background-color: #FFFFFF;
+  padding: 50px 0;
+  margin-top: 34px; /* Adjusted margin to be 34px below the previous section */
+}
+
+.event-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-subsection {
+  width: 48%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 5px solid #92CCB7;
+}
+
+.event-subsection h2 {
+  font-family: 'Palanquin Dark', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.event-subsection p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: medium;
+  margin-bottom: 20px;
+}
+
+.image-section {
+  background-image: var(--event-image);
+  background-size: cover;
+  background-position: center;
+  height: 100%; /* I can adjust this value based on my design */
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 767px) {
+  .event-content {
+    flex-direction: column;
+  }
+
+  .event-subsection {
+    width: 100%;
+  }
+}
+
+.body-copy {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.map-section {
+    display: flex;
+    width: 100%;
+}
+
+.yellow-box {
+    background-color: #D75134;
+    width: 534px;
+    height: 704px;
+    color: #FEFAF3;
+}
+
+.map-content {
+    padding: 40px;
+}
+
+.section-heading {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FEFAF3;
+    font-family: serif;
+}
+
+.map-image {
+    flex: 2;
+    height: 704px;
+    /* Set the background image for the map */
+    background-image: url("https://assets.codepen.io/7596121/Blue_Navajo+TEMP.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 767px) {
+  .map-section {
+    flex-direction: column; /* Stack elements vertically on mobile screens */
+  }
+
+  .yellow-box {
+    width: 100%; /* Full width on mobile screens */
+    height: auto; /* Adjusted height for mobile screens */
+  }
+
+  .map-content {
+    padding: 20px; /* Adjusted padding for mobile screens */
+  }
+
+  .section-heading {
+    font-size: 36px; /* Adjusted font size for mobile screens */
+  }
+
+  .body-copy {
+    font-size: 14px; /* Adjusted font size for mobile screens */
+  }
+
+  .map-image {
+    flex: 1;
+    width: 100%; /* Full width on mobile screens */
+    height: 200px; /* Adjusted height for mobile screens */
+  }
+}
+
+.site-footer {
+    background-color: #D75134;
+    color: #FEFAF3;
+    height: 446px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.footer-column {
+    text-align: center;
+}
+
+.footer-heading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-logo {
+    width: 48px;
+    height: 48px;
+    margin: 0 15px;
+}
+
+/* Style all font awesome icons */
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Instagram */
+.fa-instagram {
+  background: #D75134;
+  color: #FEFAF3;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #D75134;
+  color: #FEFAF3;
+}
+
+/* Facebook */
+.fa-facebook {
+  background: #D75134;
+  color: #FEFAF3;
+}
+
+/* Flickr */
+.fa-flickr {
+  background: #D75134;
+  color: #FEFAF3;
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 767px) {
+  .site-footer {
+    height: auto; /* Adjusted height for mobile screens */
+    padding: 20px;
+  }
+
+  .footer-top {
+    flex-direction: column; /* Stack columns vertically on mobile screens */
+    align-items: center;
+  }
+
+  .footer-column {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .footer-heading {
+    margin-bottom: 10px;
+  }
+
+  .footer-list li {
+    margin-bottom: 10px;
+  }
+
+  .footer-social {
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Add spacing between the content and social icons */
+  }
+}
